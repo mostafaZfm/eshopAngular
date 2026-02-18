@@ -1,0 +1,51 @@
+<div class="register-container">
+
+  <h2>ثبت‌نام در eShop</h2>
+
+  <div *ngIf="loading" class="loading">
+    در حال ثبت‌نام...
+  </div>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" *ngIf="!loading">
+
+    <!-- Username -->
+    <div class="form-group">
+      <label>نام کاربری</label>
+      <input type="text" formControlName="userName" placeholder="نام کاربری خود را وارد کنید" />
+      <small *ngIf="f.userName.touched && f.userName.invalid" class="error-text">
+        نام کاربری حداقل 3 حرف باشد
+      </small>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label>ایمیل</label>
+      <input type="email" formControlName="email" placeholder="ایمیل خود را وارد کنید" />
+      <small *ngIf="f.email.touched && f.email.invalid" class="error-text">
+        ایمیل معتبر وارد کنید
+      </small>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label>رمز عبور</label>
+      <input type="password" formControlName="password" placeholder="رمز عبور" />
+      <small *ngIf="f.password.touched && f.password.invalid" class="error-text">
+        رمز عبور حداقل 6 حرف باشد
+      </small>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="form-group">
+      <label>تکرار رمز عبور</label>
+      <input type="password" formControlName="confirmPassword" placeholder="رمز عبور را دوباره وارد کنید" />
+      <small *ngIf="f.confirmPassword.touched && f.confirmPassword.invalid" class="error-text">
+        تکرار رمز عبور الزامی است
+      </small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">ثبت‌نام</button>
+
+  </form>
+
+</div>

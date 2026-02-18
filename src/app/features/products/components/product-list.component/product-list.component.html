@@ -1,0 +1,47 @@
+<div class="container">
+  <h2 class="title">محصولات ما</h2>
+
+  <!-- async pipe برای کنترل لود شدن داده -->
+  <ng-container *ngIf="products$ | async as products; else loading">
+
+    <!-- خطای خالی بودن آرایه -->
+    <div *ngIf="products.length === 0" class="empty-state">
+      <p>🛒 هیچ محصولی یافت نشد</p>
+      <p>لطفاً بعداً مراجعه کنید</p>
+    </div>
+
+    <!-- Grid محصولات -->
+    <div class="grid" *ngIf="products.length > 0">
+      <div class="card" *ngFor="let p of products; trackBy: trackByProductId">
+
+        <div class="image-container">
+          <img
+            [src]="p.imageUrl || 'assets/images/no-image.png'"
+            [alt]="p.name"
+            loading="lazy"
+            (error)="onImageError($event)"
+          />
+        </div>
+
+        <div class="card-content">
+          <h3>{{ p.name }}</h3>
+          <p class="description">{{ p.description }}</p>
+          <div class="price">{{ p.price | number:'1.0-0' }} تومان</div>
+
+          <div class="card-footer">
+            <span class="status" [class.active]="p.isActive" [class.inactive]="!p.isActive">
+              {{ p.isActive ? 'موجود' : 'ناموجود' }}
+            </span>
+            <button class="btn btn-primary">افزودن به سبد خرید</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Loading template -->
+  <ng-template #loading>
+    <div class="loading">در حال بارگذاری محصولات...</div>
+  </ng-template>
+</div>
