@@ -1,51 +1,80 @@
-<div class="register-container">
+<div class="register-main">
+  <div class="register-container fade-in">
 
-  <h2>ثبت‌نام در eShop</h2>
+    <h2>ایجاد حساب کاربری</h2>
 
-  <div *ngIf="loading" class="loading">
-    در حال ثبت‌نام...
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+
+      <!-- Username -->
+      <div class="form-group">
+        <label>نام کاربری</label>
+        <input formControlName="userName" placeholder="نام کاربری" />
+        <span *ngIf="f.userName.touched && f.userName.invalid" class="error-text">
+          حداقل 3 کاراکتر وارد کنید
+        </span>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label>ایمیل</label>
+        <input formControlName="email" placeholder="ایمیل" />
+        <span *ngIf="f.email.touched && f.email.invalid" class="error-text">
+          ایمیل معتبر وارد کنید
+        </span>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label>رمز عبور</label>
+
+        <div class="password-wrapper">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="رمز عبور"
+            (input)="checkPasswordStrength()"
+          />
+          <span class="eye-icon" (click)="togglePassword()">👁</span>
+        </div>
+
+        <!-- Password Strength -->
+        <div class="strength-bar">
+          <div
+            class="strength-fill"
+            [ngClass]="passwordStrengthClass"
+          ></div>
+        </div>
+        <small class="strength-text">{{ passwordStrengthText }}</small>
+
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label>تکرار رمز عبور</label>
+
+        <div class="password-wrapper">
+          <input
+            [type]="showConfirmPassword ? 'text' : 'password'"
+            formControlName="confirmPassword"
+            placeholder="تکرار رمز عبور"
+          />
+          <span class="eye-icon" (click)="toggleConfirmPassword()">👁</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary" [disabled]="registerForm.invalid || loading">
+        ثبت‌نام
+      </button>
+
+      <div class="login-link">
+        حساب دارید؟         <a routerLink="/login" class="mybtn"><i class="fa fa-user-plus"></i>وارد شوید</a>
+
+      </div>
+
+      <div *ngIf="loading" class="loading">
+        در حال ثبت‌نام...
+      </div>
+
+    </form>
   </div>
-
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" *ngIf="!loading">
-
-    <!-- Username -->
-    <div class="form-group">
-      <label>نام کاربری</label>
-      <input type="text" formControlName="userName" placeholder="نام کاربری خود را وارد کنید" />
-      <small *ngIf="f.userName.touched && f.userName.invalid" class="error-text">
-        نام کاربری حداقل 3 حرف باشد
-      </small>
-    </div>
-
-    <!-- Email -->
-    <div class="form-group">
-      <label>ایمیل</label>
-      <input type="email" formControlName="email" placeholder="ایمیل خود را وارد کنید" />
-      <small *ngIf="f.email.touched && f.email.invalid" class="error-text">
-        ایمیل معتبر وارد کنید
-      </small>
-    </div>
-
-    <!-- Password -->
-    <div class="form-group">
-      <label>رمز عبور</label>
-      <input type="password" formControlName="password" placeholder="رمز عبور" />
-      <small *ngIf="f.password.touched && f.password.invalid" class="error-text">
-        رمز عبور حداقل 6 حرف باشد
-      </small>
-    </div>
-
-    <!-- Confirm Password -->
-    <div class="form-group">
-      <label>تکرار رمز عبور</label>
-      <input type="password" formControlName="confirmPassword" placeholder="رمز عبور را دوباره وارد کنید" />
-      <small *ngIf="f.confirmPassword.touched && f.confirmPassword.invalid" class="error-text">
-        تکرار رمز عبور الزامی است
-      </small>
-    </div>
-
-    <button type="submit" class="btn btn-primary">ثبت‌نام</button>
-
-  </form>
-
 </div>

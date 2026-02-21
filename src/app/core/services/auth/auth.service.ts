@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {registerDto, registerResponeDto, apiResponseDto, loginDto} from '../../models/auth/registerDto';
+import {
+  registerDto,
+  registerResponeDto,
+  apiResponseDto,
+  loginDto,
+  loginResponseDto
+} from '../../models/auth/registerDto';
 import { Observable, catchError, of } from 'rxjs';
 import { ApiAddressUtilities } from '../../../shared/utilities/apiAddressUtilities';
 @Injectable({
@@ -10,8 +16,8 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   // لاگین کاربر
-  login(model: loginDto): Observable<apiResponseDto<registerResponeDto>> {
-    return this.http.post<apiResponseDto<registerResponeDto>>(
+  login(model: loginDto): Observable<loginResponseDto> {
+    return this.http.post<loginResponseDto>(
       ApiAddressUtilities.login,
       model
     );
@@ -23,6 +29,11 @@ export class AuthService {
       ApiAddressUtilities.register,
       model
     );
+  }
+
+
+  isLoggedIn(): boolean {
+    return !!this.getToken();
   }
 
   // بررسی وضعیت ورود کاربر

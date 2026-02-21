@@ -1,10 +1,10 @@
 // core/dtos/account/registerDto.ts
 
-export interface registerDto {
-  userName: string;
-  email: string;
-  password: string;
-}
+  export interface registerDto {
+    userName: string;
+    email: string;
+    password: string;
+  }
 // core/dtos/account/registerDto.ts
 
 export interface registerResponeDto {
@@ -27,6 +27,9 @@ export interface apiResponseDto<T> {
 export interface loginDto {
   userName: string;  // نام کاربری
   password: string;  // رمز عبور
+}
+export interface loginResponseDto {
+  token: string;
 }
 
 

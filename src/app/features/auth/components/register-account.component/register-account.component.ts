@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {provideToastr, ToastrService} from 'ngx-toastr';
 import { AuthService } from '../../../../core/services/auth/auth.service';
 import { registerDto } from '../../../../core/models/auth/registerDto';
@@ -9,7 +9,7 @@ import { registerDto } from '../../../../core/models/auth/registerDto';
 @Component({
   selector: 'app-register-account',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
   templateUrl: './register-account.component.html',
   styleUrls: ['./register-account.component.css']
 })
@@ -74,4 +74,48 @@ export class RegisterAccountComponent {
       }
     });
   }
+
+  showPassword = false;
+  showConfirmPassword = false;
+
+  passwordStrengthText = '';
+  passwordStrengthClass = '';
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleConfirmPassword() {
+    this.showConfirmPassword = !this.showConfirmPassword;
+  }
+
+  checkPasswordStrength() {
+    const value = this.registerForm.value.password || '';
+    let strength = 0;
+
+    if (value.length >= 6) strength++;
+    if (/[A-Z]/.test(value)) strength++;
+    if (/[0-9]/.test(value)) strength++;
+    if (/[^A-Za-z0-9]/.test(value)) strength++;
+
+    switch (strength) {
+      case 1:
+        this.passwordStrengthText = 'ضعیف';
+        this.passwordStrengthClass = 'weak';
+        break;
+      case 2:
+        this.passwordStrengthText = 'متوسط';
+        this.passwordStrengthClass = 'medium';
+        break;
+      case 3:
+      case 4:
+        this.passwordStrengthText = 'قوی';
+        this.passwordStrengthClass = 'strong';
+        break;
+      default:
+        this.passwordStrengthText = '';
+        this.passwordStrengthClass = '';
+    }
+  }
+
 }

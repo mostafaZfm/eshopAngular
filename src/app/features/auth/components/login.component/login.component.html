@@ -1,0 +1,29 @@
+<div class="login-main">
+  <div class="login-container fade-in">
+    <h2>ورود به حساب کاربری</h2>
+
+    <form class="login-form" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label>ایمیل</label>
+        <input type="email" [(ngModel)]="model.userName" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label>رمز عبور</label>
+        <div class="password-wrapper">
+          <input type="password" [(ngModel)]="model.password" name="password" required>
+          <span class="eye-icon">👁</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary">ورود</button>
+
+      <div class="register-link">
+        حساب کاربری ندارید؟
+        <a routerLink="/Register" class="mybtn"><i class="fa fa-user-plus"></i>ثبت نام کنید</a>
+      </div>
+
+    </form>
+  </div>
+</div>
