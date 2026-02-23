@@ -30,6 +30,9 @@ export interface loginDto {
 }
 export interface loginResponseDto {
   token: string;
+  isSuccess : boolean;
+  message: string;
+  refreshToken : string;
 }
 
 

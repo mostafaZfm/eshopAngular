@@ -1,0 +1,48 @@
+/* admin-layout.component.css */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  direction: ltr; /* Sidebar چپ */
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background-color: #343a40;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  z-index: 10; /* بالا نگه داشتن نسبت به Main Panel */
+}
+
+.sidebar .nav-link {
+  color: white;
+  cursor: pointer;
+}
+
+.sidebar .nav-link.active {
+  background-color: #495057;
+}
+
+/* Main Panel */
+.main-panel {
+  flex-grow: 1; /* پر کردن باقی صفحه */
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  position: relative;
+  z-index: 1;
+}
+
+/* Navbar بالا */
+.main-panel .navbar {
+  flex-shrink: 0;
+}
+
+/* Content */
+.main-panel .content {
+  flex-grow: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+}

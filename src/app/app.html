@@ -1,29 +1,23 @@
-<!-- src/app/app.html -->
-<div class="app-container">
+<header class="app-header" *ngIf="showNavbar()">
+  <div class="logo">🏬 eShop</div>
 
-  <!-- Header / Navbar -->
-  <header class="app-header">
-    <div class="logo">🏬 eShop</div>
+  <nav class="nav-menu">
+    <a routerLink="/" routerLinkActive="active">خانه</a>
+    <a routerLink="/login" routerLinkActive="active">ورود</a>
+    <a routerLink="/register" class="mybtn">
+      <i class="fa fa-user-plus"></i>ثبت نام
+    </a>
+    <a routerLink="/cart" routerLinkActive="active" class="cart-link">
+      🛒 سبد خرید
+      <span class="cart-count">2</span>
+    </a>
+  </nav>
+</header>
 
-    <nav class="nav-menu">
-      <a routerLink="/" routerLinkActive="active">خانه</a>
-      <a routerLink="/login" routerLinkActive="active">ورود</a>
-      <a routerLink="Register" class="mybtn"><i class="fa fa-user-plus"></i>ثبت نام</a>
-      <a routerLink="/cart" routerLinkActive="active" class="cart-link">
-        🛒 سبد خرید
-        <span class="cart-count">2</span>
-      </a>
-    </nav>
-  </header>
+<main class="app-main">
+  <router-outlet></router-outlet>
+</main>
 
-  <!-- Main Content -->
-  <main class="app-main">
-    <router-outlet></router-outlet>
-  </main>
-
-  <!-- Footer -->
-  <footer class="app-footer">
-    © 2026 eShop - همه حقوق محفوظ است
-  </footer>
-
-</div>
+<footer class="app-footer" *ngIf="showNavbar()">
+  © 2026 eShop - همه حقوق محفوظ است
+</footer>

@@ -1,14 +1,22 @@
-/* src/app/app.css */
+/* ============================= */
+/* Global App Styles */
+/* ============================= */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+}
 
 .app-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f0f2f5;
 }
 
-/* Navbar */
+/* ============================= */
+/* Navbar اصلی (کاربر) */
+/* ============================= */
 .app-header {
   display: flex;
   justify-content: space-between;
@@ -18,7 +26,7 @@
   color: white;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
@@ -56,15 +64,9 @@
   border-radius: 50%;
 }
 
-/* Main content */
-.app-main {
-  flex: 1;
-  padding: 30px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Footer */
+/* ============================= */
+/* Footer اصلی (کاربر) */
+/* ============================= */
 .app-footer {
   text-align: center;
   padding: 15px;
@@ -73,22 +75,211 @@
   font-size: 0.9em;
 }
 
-/* Responsive Navbar */
+/* ============================= */
+/* Main Content (کاربر) */
+/* ============================= */
+.app-main {
+  flex: 1;
+  padding: 30px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ============================= */
+/* Login / Register Pages */
+/* ============================= */
+.login-main, .register-main {
+  min-height: calc(100vh - 140px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.login-container, .register-container {
+  max-width: 500px;
+  width: 100%;
+  padding: 35px 30px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 15px;
+  color: white;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.login-container h2, .register-container h2 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.form-group input {
+  padding: 11px 14px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1em;
+}
+
+.form-group input:focus {
+  outline: none;
+  box-shadow: 0 0 6px rgba(255,255,255,0.8);
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background-color: #00b894;
+  font-weight: 600;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #019874;
+}
+
+.register-link, .login-link {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9em;
+}
+
+.register-link a, .login-link a {
+  color: #ffd700;
+  text-decoration: underline;
+}
+
+.error-text {
+  color: #ffd1d1;
+  font-size: 0.85em;
+  margin-top: 5px;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 1em;
+}
+
+/* Fade In Animation */
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Password Wrapper */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+}
+
+/* ============================= */
+/* Admin Panel Layout */
+/* ============================= */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  min-height: 100vh;
+  background: #343a40;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sidebar .nav-link {
+  color: white;
+  font-weight: 500;
+  margin-bottom: 10px;
+  display: block;
+  transition: all 0.2s;
+}
+
+.sidebar .nav-link.active,
+.sidebar .nav-link:hover {
+  background-color: #495057;
+  border-radius: 5px;
+  color: #ffd700;
+}
+
+/* Main Panel */
+.main-panel {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-panel .content {
+  flex: 1;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+/* Logout Button */
+.sidebar .btn-logout {
+  width: 100%;
+  margin-top: 20px;
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.sidebar .btn-logout:hover {
+  background-color: #c82333;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .app-header {
+  .admin-layout {
     flex-direction: column;
-    align-items: flex-start;
   }
-
-  .nav-menu {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .nav-menu a {
-    margin-left: 0;
-    margin-right: 15px;
-    margin-bottom: 5px;
+  .sidebar {
+    width: 100%;
+    min-height: auto;
   }
 }

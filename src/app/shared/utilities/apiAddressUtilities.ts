@@ -3,6 +3,8 @@ export class ApiAddressUtilities{
   static products: string = "/products";
   // مسیرهای Auth
   static  login:string="/auth/login";
+  static  refresh:string="/auth/refresh";
+
   static  register:string="/auth/register";
  // static checkLogin: string = `${ApiAddressUtilities.baseAddress}/account/check`;
 
